@@ -1,0 +1,51 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+@model IEnumerable<_11319028.Students.VicktorDesrony.Models.Produk>
+
+<h2>Data List Produk Toko Tuhor Hamu</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Kategori
+            </th>
+            <th>
+                Gambar
+            </th>
+            <th>
+                Nama
+            </th>
+            <th>
+                Stok
+            </th>
+            <th>
+                Harga
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem=>item.Kategori)
+            </td>
+            <td>
+               <img width="50" height="50" src="~/Assets/Image/@Html.DisplayFor(modelItem => item.ImagePath)" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Produk_Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Stok)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Harga)
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

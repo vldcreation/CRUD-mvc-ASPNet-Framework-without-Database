@@ -1,0 +1,90 @@
+﻿
+@{
+    ViewBag.Title = "Create";
+}
+@{var produk = ViewData["Produk"] as _11319028.Students.VicktorDesrony.Models.Produk; }
+
+<h2>Create</h2>
+
+
+@using (Html.BeginForm ("Create",
+                        "Admin",
+                        FormMethod.Post,
+                        new { enctype = "multipart/form-data" }))
+{
+@Html.AntiForgeryToken()
+
+                <div class="form-horizontal">
+                    <h4>Data Produk</h4>
+                    <hr />
+                    @Html.ValidationSummary(true)
+
+                    <div class="form-group">
+                        @Html.LabelFor(@porduk => @produk.Produk_ID, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            <input type="number" name="Produk_ID" placeholder="Masukan ID Produk" />
+                            @Html.ValidationMessageFor(@porduk => @produk.Produk_ID)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(@porduk => @produk.Kategori, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            <select id="ddKategori" required name="Kategori">
+                                <option value="0">Please select</option>
+                                @foreach (var item in ViewData["ListKategori"] as List<_11319028.Students.VicktorDesrony.Models.Kategori>)
+                                {
+                                    <option value="@item.NamaKategori">@item.NamaKategori</option>
+                                }
+                            </select>
+                            @Html.ValidationMessageFor(@porduk => @produk.Kategori)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(@porduk => @produk.ImagePath, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            <input type="file" name="file" id="file" /><br><br>
+                            @Html.ValidationMessageFor(@porduk => @produk.ImagePath)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(@porduk => @produk.Produk_Name, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            <input type="text" name="Produk_Name" placeholder="Masukan Nama Produk"/>
+                            @Html.ValidationMessageFor(@porduk => @produk.Produk_Name)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(@porduk => @produk.Stok, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            <input type="number" name="Stok" placeholder="Masukan Jumlah Produk" />
+                            @Html.ValidationMessageFor(@porduk => @produk.Stok)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(@porduk => @produk.Harga, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            <input type="number" name="Harga" placeholder="Masukan Harga Produk" />
+                            @Html.ValidationMessageFor(@porduk => @produk.Harga)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Create" class="btn btn-primary" />
+                        </div>
+                    </div>
+                </div>}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+

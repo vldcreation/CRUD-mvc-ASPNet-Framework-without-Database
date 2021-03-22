@@ -1,0 +1,119 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+
+
+<h2>Data List Produk Toko Tuhor Hamu</h2>
+<div class="row">
+    <div class="col col-md-12">
+        <p class="btn btn-warning">
+            @Html.ActionLink("Create New", "Create")
+        </p>
+    </div>
+</div>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Kategori
+            </th>
+            <th>
+                Gambar
+            </th>
+            <th>
+                Nama
+            </th>
+            <th>
+                Stok
+            </th>
+            <th>
+                Harga
+            </th>
+            <th>
+                Action
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in ViewData["Produk"] as List<_11319028.Students.VicktorDesrony.Models.Produk>)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Kategori)
+            </td>
+            <td>
+                <img width="50" height="50" src="~/Assets/Image/@Html.DisplayFor(modelItem => item.ImagePath)" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Produk_Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Stok)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Harga)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Produk_ID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Produk_ID })
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+
+
+<h2>Data List Pembeli Toko Tuhor Hamu</h2>
+<div class="row">
+    <div class="col col-md-12">
+        <p class="btn btn-warning">
+            @Html.ActionLink("Create New", "AddPembeli")
+        </p>
+    </div>
+</div>
+<div class="row">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Nama
+                </th>
+                <th>
+                    jenis Kelamin
+                </th>
+                <th>
+                    Alamat
+                </th>
+                <th>
+                    Action
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            
+            @foreach (var item in ViewData["Pembeli"] as List<_11319028.Students.VicktorDesrony.Models.Pembeli>)
+            {
+            <tr>
+                <td>
+                    @item.NamaPembeli
+                </td>
+                <td>
+                    @item.JenisKelamin
+                </td>
+                <td>
+                    @item.Alamat
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "EditPembeli", new { id = item.Pembeli_ID }) |
+                    @Html.ActionLink("Delete", "DeletePembeli", new { id = item.Pembeli_ID })
+                </td>
+            </tr>
+            } 
+        </tbody>
+    </table>
+</div>
+

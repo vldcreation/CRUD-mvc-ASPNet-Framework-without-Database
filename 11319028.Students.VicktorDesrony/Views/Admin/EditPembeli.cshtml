@@ -1,0 +1,81 @@
+﻿@model _11319028.Students.VicktorDesrony.Models.Pembeli
+@{
+    ViewBag.Title = "EditPembeli";
+}
+
+<h2>EditPembeli</h2>
+
+@using (Html.BeginForm())
+{
+
+@Html.AntiForgeryToken()
+<div class="form-horizontal">
+    <h4 class="alert alert-info">Data Produk</h4>
+    <hr />
+    @Html.ValidationSummary(true)
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Pembeli_ID, new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Pembeli_ID)
+            @Html.ValidationMessageFor(model => model.Pembeli_ID)
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.NamaPembeli, new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.NamaPembeli)
+            @Html.ValidationMessageFor(model => model.NamaPembeli)
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.JenisKelamin, new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(x => x.JenisKelamin, new[]
+       {
+           new SelectListItem() {Text = "Male", Value = "Laki-Laki"},
+           new SelectListItem() {Text = "Female", Value = "Perempuan"},
+       }, "Choose an Option") @Html.ValidationMessageFor(x => x.JenisKelamin, "", new { @class = "text-danger" })
+</div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.Username, new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.EditorFor(model => model.Username)
+        @Html.ValidationMessageFor(model => model.Username)
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.Password, new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        <input type="password" name="Password" value="@Model.Password" />
+        @Html.ValidationMessageFor(model => model.Password)
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.Alamat, new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.EditorFor(model => model.Alamat)
+        @Html.ValidationMessageFor(model => model.Alamat)
+    </div>
+</div>
+
+<div class="form-group">
+    <div class="col-md-offset-2 col-md-10">
+        <input type="submit" value="Create" class="btn btn-primary" />
+    </div>
+</div>
+</div>}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
