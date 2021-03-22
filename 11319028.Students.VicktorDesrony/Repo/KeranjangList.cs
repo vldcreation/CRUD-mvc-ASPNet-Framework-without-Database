@@ -37,7 +37,7 @@ namespace _11319028.Students.VicktorDesrony.Repo
             listKeranjang.Add(keranjang);
         }
 
-        public static void updateKeranjang(int id,Keranjang keranjang)
+        public static void updateKeranjang(int idUser, Keranjang keranjang)
         {
             Keranjang keranjangUpdate = listKeranjang.Find(x => x.ID == keranjang.ID);
             keranjangUpdate = keranjang;
