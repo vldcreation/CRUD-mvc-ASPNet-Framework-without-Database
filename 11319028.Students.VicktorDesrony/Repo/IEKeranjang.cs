@@ -11,7 +11,7 @@ namespace _11319028.Students.VicktorDesrony.Repo
         List<Keranjang> allKeranjang();
         List<Keranjang> listbyKategori(int id,String kategori);
         Keranjang SelectKeranjangById(int id);
-        Keranjang SelectKeranjangByIdPembeli(int id);
+        List<Keranjang> SelectKeranjangByIdPembeli(int id);
         void insertKeranjang(Keranjang keranjang);
         void updateKeranjang(int idUser,Keranjang keranjang);
         void deleteKeranjang(int id);

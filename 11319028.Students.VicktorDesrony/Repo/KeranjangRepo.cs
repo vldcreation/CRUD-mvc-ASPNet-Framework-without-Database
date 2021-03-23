@@ -34,9 +34,10 @@ namespace _11319028.Students.VicktorDesrony.Repo
             return allKeranjang().Where(p => p.ID == id).First();
         }
 
-        public Models.Keranjang SelectKeranjangByIdPembeli(int id)
+        public List<Models.Keranjang> SelectKeranjangByIdPembeli(int id)
         {
-            return allKeranjang().Where(p => p.IDPembeli == id).First();
+            var newList = allKeranjang().Where(p => p.IDPembeli == id).ToList();
+            return newList;
         }
 
         public void updateKeranjang(int idUser, Models.Keranjang keranjang)
