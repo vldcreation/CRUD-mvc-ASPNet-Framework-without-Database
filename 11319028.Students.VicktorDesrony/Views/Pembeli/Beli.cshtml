@@ -1,0 +1,90 @@
+﻿@model _11319028.Students.VicktorDesrony.Models.Produk
+@{
+    ViewBag.Title = "Beli";
+}
+
+<h2>Beli</h2>
+
+@using (Html.BeginForm("Beli",
+                        "Pembeli",
+                        FormMethod.Post,
+                        new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h4>Produk Information</h4>
+    <hr />
+    @Html.ValidationSummary(true)
+    @Html.HiddenFor(model => model.Produk_ID)
+    @Html.HiddenFor(model => model.Kategori)
+    @Html.HiddenFor(model => model.ImagePath)
+    @Html.HiddenFor(model => model.Produk_Name)
+    @Html.HiddenFor(model => model.Stok)
+    @Html.HiddenFor(model => model.Harga)
+    <input type="hidden" name="ID" value="2" />
+    <input type="hidden" name="IDPembeli" value="1" />
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Kategori, new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DisplayFor(model => model.Kategori, new { htmlAttributes = new { @disabled = "disabled" } })
+            @Html.ValidationMessageFor(model => model.Kategori)
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ImagePath, new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.ValidationMessageFor(model => model.ImagePath)
+            Current Image :
+            <img width="50" height="50" src="~/Assets/Image/@Html.DisplayFor(model => model.ImagePath)" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Produk_Name, new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DisplayFor(model => model.Produk_Name, new { htmlAttributes = new { @disabled = "disabled" } })
+            @Html.ValidationMessageFor(model => model.Produk_Name)
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Stok, new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DisplayFor(model => model.Stok, new { htmlAttributes = new { @disabled = "disabled" } })
+            @Html.ValidationMessageFor(model => model.Stok)
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2" for="JumlahCart">Jumlah : </label>
+        <div class="col-md-10">
+            <input type="number" name="JumlahCart" required value="1" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Harga, new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DisplayFor(model => model.Harga, new { htmlAttributes = new { @disabled = "disabled" } })
+            @Html.ValidationMessageFor(model => model.Harga)
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-primary" />
+        </div>
+    </div>
+</div>}
+
+<div>
+    @Html.ActionLink("Back to List", "MyCart")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+

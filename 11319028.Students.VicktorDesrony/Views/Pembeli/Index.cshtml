@@ -51,7 +51,7 @@
                 @Html.DisplayFor(modelItem => item.Harga)
             </td>
             <td>
-                @Html.ActionLink("Beli", "Beli", new { id = item.Produk_ID })
+                @Html.ActionLink("Beli", "Beli", new { id = item.Produk_ID } , new { @class="btn btn-primary btn-sm" })
             </td>
         </tr>
         }

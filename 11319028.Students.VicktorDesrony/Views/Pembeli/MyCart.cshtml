@@ -1,0 +1,149 @@
+﻿
+@{
+    ViewBag.Title = "MyCart";
+}
+@model IEnumerable<_11319028.Students.VicktorDesrony.Models.Keranjang>
+@{ 
+    var TotalFee = 0.0;
+}
+
+<h2>Data List Keranjang</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Kategori
+            </th>
+            <th>
+                Gambar
+            </th>
+            <th>
+                Nama
+            </th>
+            <th>
+                Jumlah
+            </th>
+            <th>
+                Harga
+            </th>
+            <th>
+                Action
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            { TotalFee = TotalFee + (item.JumlahCart * item.Harga); }
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.KategoriCart)
+                </td>
+                <td>
+                    <img width="50" height="50" src="~/Assets/Image/@Html.DisplayFor(modelItem => item.pathGambar)" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NamaCart)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.JumlahCart)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Harga)
+                </td>
+                <td>
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#@item.ID">
+                        Ubah
+                    </button>
+                </td>
+            </tr>
+
+
+
+            <!-- Modal -->
+            <div class="modal fade" id="@item.ID" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="myModalLabel">Edit Cart - @item.NamaCart</h4>
+                        </div>
+                        <div class="modal-body">
+                            @using (Html.BeginForm("EditCart",
+                                        "Pembeli",
+                                        FormMethod.Post,
+                                        new { enctype = "multipart/form-data" }))
+                            {
+                                @Html.AntiForgeryToken()
+                                <div class="form-horizontal">
+                                    <h4>Produk Information</h4>
+                                    <hr />
+                                    @Html.ValidationSummary(true)
+                                    @Html.HiddenFor(modelItem => item.ID)
+                                    @Html.HiddenFor(modelItem => item.IDPembeli)
+                                    @Html.HiddenFor(modelItem => item.IDProduk)
+
+                                    <div class="form-group">
+                                        @Html.LabelFor(modelItem => item.KategoriCart, new { @class = "control-label col-md-2" })
+                                        <div class="col-md-10">
+                                            @Html.EditorFor(modelItem => item.KategoriCart)
+                                            @Html.ValidationMessageFor(modelItem => item.KategoriCart)
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        @Html.LabelFor(modelItem => item.pathGambar, new { @class = "control-label col-md-2" })
+                                        <div class="col-md-10">
+                                            <input type="file" name="file" id="file" /><br><br>
+                                            @Html.ValidationMessageFor(modelItem => item.pathGambar)
+                                            Current Image :
+                                            <img width="50" height="50" src="~/Assets/Image/@Html.DisplayFor(modelItem => item.pathGambar)" />
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        @Html.LabelFor(modelItem => item.NamaCart, new { @class = "control-label col-md-2" })
+                                        <div class="col-md-10">
+                                            @Html.EditorFor(modelItem => item.NamaCart)
+                                            @Html.ValidationMessageFor(modelItem => item.NamaCart)
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        @Html.LabelFor(modelItem => item.JumlahCart, new { @class = "control-label col-md-2" })
+                                        <div class="col-md-10">
+                                            @Html.EditorFor(modelItem => item.JumlahCart)
+                                            @Html.ValidationMessageFor(modelItem => item.JumlahCart)
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        @Html.LabelFor(modelItem => item.Harga, new { @class = "control-label col-md-2" })
+                                        <div class="col-md-10">
+                                            @Html.EditorFor(modelItem => item.Harga)
+                                            @Html.ValidationMessageFor(modelItem => item.Harga)
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="col-md-offset-2 col-md-10">
+                                            <input type="submit" value="Create" class="btn btn-primary" />
+                                        </div>
+                                    </div>
+                                </div>}
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </tbody>
+</table>
+                                <div class="row">
+                                    <b><div class="col col-md-12">Total = @TotalFee</div></b>
+                                </div>
